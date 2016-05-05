@@ -11,9 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "babel": {
-        "version": "^6.5.2",
-        "presets": ["es2015", "react"]
-      },
+      "presets": [
+        "es2015",
+        "react"
+      ],
+      "version": "^6.5.2"
+    },
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
@@ -24,9 +27,11 @@
     "eslint-plugin-react": "^5.0.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.0.2",
+    "react-dom": "^15.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "redux": "^3.5.2",
+    "redux-thunk": "^2.0.1",
     "webpack": "^1.13.0"
   },
   "devDependencies": {
