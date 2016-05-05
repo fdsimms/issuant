@@ -14,3 +14,19 @@ label, button {
   text-decoration: none;
   cursor: default;
 }
+
+body {
+  
+}
+
+.group:before {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.header-bar {
+}
+
+.header-text {
+}
