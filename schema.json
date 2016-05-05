@@ -1,0 +1,56 @@
+{
+  "selectedRepo": "npm/npm",
+  "issuesByRepo": {
+    "isFetching": true,
+    "didInvalidate": false,
+    "lastUpdated": null,
+    "issues": [
+    {
+       "url": "https://api.github.com/repos/npm/npm/issues/12591",
+       "repository_url": "https://api.github.com/repos/npm/npm",
+       "labels_url": "https://api.github.com/repos/npm/npm/issues/12591/labels{/name}",
+       "comments_url": "https://api.github.com/repos/npm/npm/issues/12591/comments",
+       "events_url": "https://api.github.com/repos/npm/npm/issues/12591/events",
+       "html_url": "https://github.com/npm/npm/issues/12591",
+       "id": 153240817,
+       "number": 12591,
+       "title": "not able to Install Ionic by using npm install -g ionic",
+       "user": {
+                 "login": "renuabhish",
+                 "id": 13063367,
+                 "avatar_url": "https://avatars.githubusercontent.com/u/13063367?v=3",
+                 "gravatar_id": "",
+                 "url": "https://api.github.com/users/renuabhish",
+                 "html_url": "https://github.com/renuabhish",
+                 "followers_url": "https://api.github.com/users/renuabhish/followers",
+                 "following_url": "https://api.github.com/users/renuabhish/following{/other_user}",
+                 "gists_url": "https://api.github.com/users/renuabhish/gists{/gist_id}",
+                 "starred_url": "https://api.github.com/users/renuabhish/starred{/owner}{/repo}",
+                 "subscriptions_url": "https://api.github.com/users/renuabhish/subscriptions",
+                 "organizations_url": "https://api.github.com/users/renuabhish/orgs",
+                 "repos_url": "https://api.github.com/users/renuabhish/repos",
+                 "events_url": "https://api.github.com/users/renuabhish/events{/privacy}",
+                 "received_events_url": "https://api.github.com/users/renuabhish/received_events",
+                 "type": "User",
+                 "site_admin": false
+               },
+       "labels": [
+         {
+           "url": "https://api.github.com/repos/npm/npm/labels/review",
+           "name": "review",
+           "color": "343434"
+         }
+       ],
+       "state": "open",
+       "locked": false,
+       "assignee": null,
+       "milestone": null,
+       "comments": 0,
+       "created_at": "2016-05-05T14:13:24Z",
+       "updated_at": "2016-05-05T14:13:24Z",
+       "closed_at": null,
+       "body": "Error message -\r\nhttps://registry.npmjs.org/\r\nnpm ERR! Windows_NT 6.1.7600\r\nnpm ERR! argv \"C:\\\\Program Files\\\\nodejs\\\\node.exe\" \"C:\\\\Program Files\\\\nodejs\\\\\r\nnode_modules\\\\npm\\\\bin\\\\npm-cli.js\" \"install\" \"-g\" \"ionic\"\r\nnpm ERR! node v4.4.3\r\nnpm ERR! npm  v2.15.1\r\n\r\nnpm ERR! shasum check failed for C:\\Users\\welcome\\AppData\\Local\\Temp\\npm-3796-09\r\nc2fe9e\\registry.npmjs.org\\ionic\\-\\ionic-1.7.14.tgz\r\nnpm ERR! Expected: af493d5df4688d917d778b0934d1739b9be6efe6\r\nnpm ERR! Actual:   38df199823ecf86636d1a93172798ef9625fc634\r\nnpm ERR! From:     https://registry.npmjs.org/ionic/-/ionic-1.7.14.tgz\r\nnpm ERR!\r\nnpm ERR! If you need help, you may report this error at:\r\nnpm ERR!     <https://github.com/npm/npm/issues>"
+      },
+    ]
+  }
+}
