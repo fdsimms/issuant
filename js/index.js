@@ -4,7 +4,7 @@ import IssuesList from "./components/issuesList";
 import { Provider } from "react-redux";
 import { Router, Route, browserHistory, IndexRoute } from "react-router";
 import configureStore from "./configureStore.js";
-import App from "./components/app";
+import App from "./containers/app";
 
 const store = configureStore();
 
