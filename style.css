@@ -16,7 +16,8 @@ label, button {
 }
 
 body {
-  
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
 }
 
 .group:before {
@@ -26,7 +27,19 @@ body {
 }
 
 .header-bar {
+  display: block;
+  height: 50px;
+  position: relative;
+  background-color: goldenrod;
 }
 
 .header-text {
+  display: block;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: white;
+  text-shadow: 0 0 0.5px black;
 }
