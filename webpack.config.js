@@ -1,10 +1,12 @@
+/* global require, module, __dirname */
+
 var path = require("path");
 
 module.exports = {
   context: __dirname,
   entry: "./js/index.js",
   output: {
-    path: path.join(__dirname, './js/'),
+    path: path.join(__dirname, "./js/"),
     filename: "bundle.js"
   },
   resolve: {
@@ -15,9 +17,9 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: "babel",
         query: {
-          presets: ['react', 'es2015']
+          presets: ["react", "es2015"]
         }
       },
       {
@@ -26,5 +28,5 @@ module.exports = {
       }
     ]
   },
-  devtool: 'source-map',
+  devtool: "source-map"
 };
