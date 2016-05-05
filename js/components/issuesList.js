@@ -1,10 +1,12 @@
 import React, { PropTypes } from "react";
+import Issue from "./issue";
 
 const IssuesList = ({ issues }) => (
   <ul className="issues-list">
-    {issues.map((issue, i) =>
-      <li className="issue" key={i}>{issue.title}</li>
-    )}
+    { issues.map((issue, i) =>
+      <Issue key={i} issue={issue} />
+      )
+    }
   </ul>
 );
 

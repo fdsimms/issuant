@@ -9,9 +9,7 @@ import App from "./containers/app";
 const store = configureStore();
 
 const routes = (
-  <Route path="/" component={App}>
-  </Route>
-
+  <Route path="/" component={App} />
 );
 
 ReactDOM.render(
