@@ -20,6 +20,14 @@ body {
   font-family: sans-serif;
 }
 
+input {
+  cursor: text;
+}
+
+button {
+  cursor: pointer;
+}
+
 .group:before {
   clear: both;
   content: "";
