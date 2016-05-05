@@ -43,7 +43,7 @@ button {
 
 .header-text {
   display: block;
-  padding: 10px;
+  padding-left: 10px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
