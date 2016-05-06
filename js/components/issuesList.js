@@ -1,10 +1,10 @@
 import React, { PropTypes } from "react";
-import Issue from "./issue";
+import IssueContainer from "../containers/issueContainer";
 
 const IssuesList = ({ issues }) => (
   <ul className="issues-list">
     { issues.map((issue, i) =>
-      <Issue key={i} issue={issue} />
+      <IssueContainer key={i} issue={issue} />
       )
     }
   </ul>
