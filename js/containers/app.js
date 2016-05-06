@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { selectRepo, fetchIssuesIfNeeded, invalidateRepo } from "../actions";
 import IssuesList from "../components/issuesList";
+import Header from "../components/header";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class App extends Component {
     const { selectedRepo, issues, isFetching, lastUpdated } = this.props;
     return (
       <div>
+      <Header />
         <p>
           {lastUpdated &&
             <span>
