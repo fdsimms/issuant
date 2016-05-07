@@ -5,7 +5,7 @@ const Issue = ({ issue, shortenedBody }) => (
     <li className="issue-title">{issue.title}</li>
     <li className="issue-author">{issue.user.login}</li>
     <li className="issue-body">{shortenedBody}</li>
-    <li className="issue-labels">{issue.labels}</li>
+
   </ul>
 );
 
