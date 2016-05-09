@@ -15,6 +15,10 @@ label, button {
   cursor: default;
 }
 
+ul {
+  list-style: none;
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   font-family: sans-serif;
@@ -50,4 +54,19 @@ button {
   font-size: 32px;
   color: white;
   text-shadow: 0 0 0.5px black;
+}
+
+.issues-list {
+  margin: 15px;
+}
+
+.issue {
+  margin-top: 15px;
+}
+
+.button {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 5px;
+  cursor: pointer;
 }
