@@ -19,7 +19,11 @@ function curPage(state = 1, action) {
   case INCREMENT_CUR_PAGE:
     return state + 1;
   case DECREMENT_CUR_PAGE:
-    return state - 1;
+    if (state > 1) {
+      return state - 1;
+    } else {
+      return state;
+    }
   default:
     return state;
   }
