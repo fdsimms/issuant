@@ -6,6 +6,7 @@ export const SELECT_REPO = "SELECT_REPO";
 export const INVALIDATE_REPO = "INVALIDATE_REPO";
 export const INCREMENT_CUR_PAGE = "INCREMENT_CUR_PAGE";
 export const DECREMENT_CUR_PAGE = "DECREMENT_CUR_PAGE";
+export const UPDATE_LAST_PAGE = "UPDATE_LAST_PAGE";
 
 export function selectRepo(repo) {
   return {
@@ -49,6 +50,13 @@ export function decrementCurPage() {
   };
 }
 
+export function updateLastPage(lastPage) {
+  return {
+    type: UPDATE_LAST_PAGE,
+    lastPage
+  };
+}
+
 function fetchIssues(state, repo) {
   return dispatch => {
     dispatch(requestIssues(repo));
@@ -56,8 +64,12 @@ function fetchIssues(state, repo) {
     let page = "https://api.github.com/repos/" + repo + "/issues?page=" + state.curPage;
 
     return fetch(page)
-      .then(response => response.json())
-      .then(json => dispatch(receiveIssues(repo, json)));
+      .then(response => {
+        let links = response.headers.get("Link");
+        let lastPage = links.match(/.*page=(\d+)>;\srel="last"/)[1];
+        dispatch(updateLastPage(lastPage));
+        return response.json();
+      }).then(json => dispatch(receiveIssues(repo, json)));
   };
 }
 
