@@ -4,6 +4,7 @@ export const REQUEST_ISSUES = "REQUEST_ISSUES";
 export const RECEIVE_ISSUES = "RECEIVE_ISSUES";
 export const SELECT_REPO = "SELECT_REPO";
 export const INVALIDATE_REPO = "INVALIDATE_REPO";
+export const CHANGE_NEXT_PAGE_LINK = "CHANGE_NEXT_PAGE_LINK";
 
 export function selectRepo(repo) {
   return {
@@ -35,11 +36,41 @@ function receiveIssues(repo, json) {
   };
 }
 
+export function changeNextPageLink(nextPageLink) {
+  return {
+    type: CHANGE_NEXT_PAGE_LINK,
+    nextPageLink
+  };
+}
+
 function fetchIssues(repo) {
   return dispatch => {
     dispatch(requestIssues(repo));
-    return fetch(`https://api.github.com/repos/${repo}/issues`)
-      .then(response => response.json())
+    return fetch("https://api.github.com/repos/" + repo + "/issues")
+      .then(response => {
+        let linkHeader = response.headers.get("Link");
+        if (linkHeader) {
+          let nextPageLink = linkHeader.match(/(https.*)>;\srel="next"/)[1];
+          dispatch(changeNextPageLink(nextPageLink));
+        }
+        return response.json();
+      })
+      .then(json => dispatch(receiveIssues(repo, json)));
+  };
+}
+
+export function fetchNextPage(repo, nextPageLink) {
+  return dispatch => {
+    dispatch(requestIssues(repo));
+    return fetch(nextPageLink)
+      .then(response => {
+        let linkHeader = response.headers.get("Link");
+        if (linkHeader) {
+          let nextPageLink = linkHeader.match(/(https.*)>;\srel="next"/)[1];
+          dispatch(changeNextPageLink(nextPageLink));
+        }
+        return response.json();
+      })
       .then(json => dispatch(receiveIssues(repo, json)));
   };
 }

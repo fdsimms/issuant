@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { selectRepo, fetchIssuesIfNeeded, invalidateRepo } from "../actions";
+import { selectRepo, fetchIssuesIfNeeded, invalidateRepo, fetchNextPage, changeNextPageLink } from "../actions";
 import IssuesList from "../components/issuesList";
 import Header from "../components/header";
 
@@ -17,9 +17,15 @@ class App extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { dispatch } = nextProps;
     if (nextProps.selectedRepo !== this.props.selectedRepo) {
-      const { dispatch, selectedRepo } = nextProps;
+      const { selectedRepo } = nextProps;
       dispatch(fetchIssuesIfNeeded(selectedRepo));
+    }
+
+    if (nextProps.nextPageLink !== this.props.nextPageLink) {
+      const { nextPageLink } = nextProps;
+      dispatch(changeNextPageLink(nextPageLink));
     }
   }
 
@@ -30,7 +36,7 @@ class App extends Component {
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedRepo } = this.props;
+    const { dispatch, selectedRepo, nextPageLink } = this.props;
     dispatch(invalidateRepo(selectedRepo));
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
@@ -75,11 +81,12 @@ App.propTypes = {
   issues: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  nextPageLink: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedRepo, issuesByRepo } = state;
+  const { selectedRepo, issuesByRepo, nextPageLink } = state;
   const {
     isFetching,
     lastUpdated,
@@ -93,7 +100,8 @@ function mapStateToProps(state) {
     selectedRepo,
     issues,
     isFetching,
-    lastUpdated
+    lastUpdated,
+    nextPageLink
   };
 }
 

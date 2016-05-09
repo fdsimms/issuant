@@ -42,23 +42,4 @@ class IssueContainer extends Component {
 
 Issue.propTypes = { issue: PropTypes.object.isRequired };
 
-function mapStateToProps(state) {
-  const { selectedRepo, issuesByRepo } = state;
-  const {
-    isFetching,
-    lastUpdated,
-    items: issues
-  } = issuesByRepo[selectedRepo] || {
-    isFetching: true,
-    items: []
-  };
-
-  return {
-    selectedRepo,
-    issues,
-    isFetching,
-    lastUpdated
-  };
-}
-
-export default connect(mapStateToProps)(IssueContainer);
+export default connect()(IssueContainer);

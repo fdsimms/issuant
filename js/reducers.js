@@ -1,13 +1,23 @@
 import { combineReducers } from "redux";
 import {
   SELECT_REPO, INVALIDATE_REPO,
-  REQUEST_ISSUES, RECEIVE_ISSUES
+  REQUEST_ISSUES, RECEIVE_ISSUES,
+  CHANGE_NEXT_PAGE_LINK
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
   switch (action.type) {
   case SELECT_REPO:
     return action.repo;
+  default:
+    return state;
+  }
+}
+
+function nextPageLink(state = "", action) {
+  switch (action.type) {
+  case CHANGE_NEXT_PAGE_LINK:
+    return action.nextPageLink;
   default:
     return state;
   }
@@ -55,7 +65,8 @@ function issuesByRepo(state = { }, action) {
 
 const rootReducer = combineReducers({
   issuesByRepo,
-  selectedRepo
+  selectedRepo,
+  nextPageLink
 });
 
 export default rootReducer;
