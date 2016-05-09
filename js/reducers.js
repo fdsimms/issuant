@@ -2,7 +2,8 @@ import { combineReducers } from "redux";
 import {
   SELECT_REPO, INVALIDATE_REPO,
   REQUEST_ISSUES, RECEIVE_ISSUES,
-  INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE
+  INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE,
+  UPDATE_LAST_PAGE
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
@@ -24,6 +25,15 @@ function curPage(state = 1, action) {
     } else {
       return state;
     }
+  default:
+    return state;
+  }
+}
+
+function lastPage(state = -1, action) {
+  switch(action.type) {
+  case UPDATE_LAST_PAGE:
+    return Number(action.lastPage);
   default:
     return state;
   }
@@ -72,7 +82,8 @@ function issuesByRepo(state = { }, action) {
 const rootReducer = combineReducers({
   issuesByRepo,
   selectedRepo,
-  curPage
+  curPage,
+  lastPage
 });
 
 export default rootReducer;
