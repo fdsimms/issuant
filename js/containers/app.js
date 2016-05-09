@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { selectRepo, fetchIssuesIfNeeded, invalidateRepo, fetchNextPage, incrementCurPage } from "../actions";
+import { selectRepo,
+         fetchIssuesIfNeeded,
+         invalidateRepo,
+         incrementCurPage,
+         decrementCurPage } from "../actions";
 import IssuesList from "../components/issuesList";
 import Header from "../components/header";
 
@@ -9,6 +13,7 @@ class App extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleNextPageClick = this.handleNextPageClick.bind(this);
+    this.handlePrevPageClick = this.handlePrevPageClick.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
   }
 
@@ -51,6 +56,15 @@ class App extends Component {
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 
+  handlePrevPageClick(e) {
+    e.preventDefault();
+
+    const { dispatch, selectedRepo } = this.props;
+    dispatch(decrementCurPage());
+    dispatch(invalidateRepo(selectedRepo));
+    dispatch(fetchIssuesIfNeeded(selectedRepo));
+  }
+
   render() {
     const { selectedRepo, issues, isFetching, lastUpdated } = this.props;
     return (
@@ -65,6 +79,12 @@ class App extends Component {
           }
           {!isFetching &&
             <a href="#"
+            onClick={this.handlePrevPageClick}>
+            prev
+            </a>
+          }
+          {!isFetching &&
+            <a href="#"
                onClick={this.handleRefreshClick}>
               Refresh
             </a>
@@ -72,7 +92,7 @@ class App extends Component {
           {!isFetching &&
             <a href="#"
                onClick={this.handleNextPageClick}>
-              >
+              next
             </a>
           }
         </p>
