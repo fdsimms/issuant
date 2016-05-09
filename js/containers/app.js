@@ -71,39 +71,39 @@ class App extends Component {
   render() {
     const { selectedRepo, issues, isFetching, lastUpdated, lastPage } = this.props;
     return (
-      <div>
+      <div className="app">
       <Header />
         <p>
           {lastUpdated &&
-            <span>
+            <span className="last-updated">
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
               {" "}
             </span>
           }
           {!isFetching &&
-            <a href="#"
+            <a className="prev-page-button button" href="#"
             onClick={this.handlePrevPageClick}>
             prev
             </a>
           }
           {!isFetching &&
-            <a href="#"
+            <a className="refresh-button button" href="#"
                onClick={this.handleRefreshClick}>
               Refresh
             </a>
           }
           {!isFetching &&
-            <a href="#"
+            <a className="next-page-button button" href="#"
                onClick={this.handleNextPageClick}>
               next
             </a>
           }
         </p>
         {isFetching && issues.length === 0 &&
-          <h2>Loading...</h2>
+          <h2 className="loading">Loading...</h2>
         }
         {!isFetching && issues.length === 0 &&
-          <h2>Empty.</h2>
+          <h2 className="empty">Empty.</h2>
         }
         {issues.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
