@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import {
   SELECT_REPO, INVALIDATE_REPO,
   REQUEST_ISSUES, RECEIVE_ISSUES,
-  CHANGE_NEXT_PAGE_LINK
+  INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
@@ -14,10 +14,12 @@ function selectedRepo(state = "npm/npm", action) {
   }
 }
 
-function nextPageLink(state = "", action) {
+function curPage(state = 1, action) {
   switch (action.type) {
-  case CHANGE_NEXT_PAGE_LINK:
-    return action.nextPageLink;
+  case INCREMENT_CUR_PAGE:
+    return state + 1;
+  case DECREMENT_CUR_PAGE:
+    return state - 1;
   default:
     return state;
   }
@@ -66,7 +68,7 @@ function issuesByRepo(state = { }, action) {
 const rootReducer = combineReducers({
   issuesByRepo,
   selectedRepo,
-  nextPageLink
+  curPage
 });
 
 export default rootReducer;

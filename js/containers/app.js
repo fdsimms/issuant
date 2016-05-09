@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { selectRepo, fetchIssuesIfNeeded, invalidateRepo, fetchNextPage, changeNextPageLink } from "../actions";
+import { selectRepo, fetchIssuesIfNeeded, invalidateRepo, fetchNextPage, incrementCurPage } from "../actions";
 import IssuesList from "../components/issuesList";
 import Header from "../components/header";
 
@@ -45,9 +45,10 @@ class App extends Component {
   handleNextPageClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedRepo, nextPageLink } = this.props;
+    const { dispatch, selectedRepo } = this.props;
+    dispatch(incrementCurPage());
     dispatch(invalidateRepo(selectedRepo));
-    dispatch(fetchNextPage(selectedRepo, nextPageLink));
+    dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 
   render() {
@@ -97,11 +98,11 @@ App.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-  nextPageLink: PropTypes.string.isRequired
+  curPage: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedRepo, issuesByRepo, nextPageLink } = state;
+  const { selectedRepo, issuesByRepo, curPage } = state;
   const {
     isFetching,
     lastUpdated,
@@ -116,7 +117,7 @@ function mapStateToProps(state) {
     issues,
     isFetching,
     lastUpdated,
-    nextPageLink
+    curPage
   };
 }
 
