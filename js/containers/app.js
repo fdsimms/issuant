@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleNextPageClick = this.handleNextPageClick.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
   }
 
@@ -41,6 +42,14 @@ class App extends Component {
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 
+  handleNextPageClick(e) {
+    e.preventDefault();
+
+    const { dispatch, selectedRepo, nextPageLink } = this.props;
+    dispatch(invalidateRepo(selectedRepo));
+    dispatch(fetchNextPage(selectedRepo, nextPageLink));
+  }
+
   render() {
     const { selectedRepo, issues, isFetching, lastUpdated } = this.props;
     return (
@@ -57,6 +66,12 @@ class App extends Component {
             <a href="#"
                onClick={this.handleRefreshClick}>
               Refresh
+            </a>
+          }
+          {!isFetching &&
+            <a href="#"
+               onClick={this.handleNextPageClick}>
+              >
             </a>
           }
         </p>
