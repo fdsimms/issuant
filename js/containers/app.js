@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { selectRepo,
          fetchIssuesIfNeeded,
          invalidateRepo,
+         updateLastPage,
          incrementCurPage,
          decrementCurPage } from "../actions";
 import IssuesList from "../components/issuesList";
@@ -29,9 +30,9 @@ class App extends Component {
       dispatch(fetchIssuesIfNeeded(selectedRepo));
     }
 
-    if (nextProps.nextPageLink !== this.props.nextPageLink) {
-      const { nextPageLink } = nextProps;
-      dispatch(changeNextPageLink(nextPageLink));
+    if (nextProps.lastPage !== this.props.lastPage) {
+      const { lastPage } = nextProps;
+      dispatch(updateLastPage(lastPage));
     }
   }
 
@@ -50,7 +51,7 @@ class App extends Component {
   handleNextPageClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedRepo } = this.props;
+    const { dispatch, selectedRepo, curPage } = this.props;
     dispatch(incrementCurPage());
     dispatch(invalidateRepo(selectedRepo));
     dispatch(fetchIssuesIfNeeded(selectedRepo));
@@ -59,14 +60,16 @@ class App extends Component {
   handlePrevPageClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedRepo } = this.props;
-    dispatch(decrementCurPage());
-    dispatch(invalidateRepo(selectedRepo));
-    dispatch(fetchIssuesIfNeeded(selectedRepo));
+    const { dispatch, selectedRepo, curPage } = this.props;
+    if (curPage > 1) {
+      dispatch(decrementCurPage());
+      dispatch(invalidateRepo(selectedRepo));
+      dispatch(fetchIssuesIfNeeded(selectedRepo));
+    }
   }
 
   render() {
-    const { selectedRepo, issues, isFetching, lastUpdated } = this.props;
+    const { selectedRepo, issues, isFetching, lastUpdated, lastPage } = this.props;
     return (
       <div>
       <Header />
@@ -118,11 +121,12 @@ App.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
-  curPage: PropTypes.number.isRequired
+  curPage: PropTypes.number.isRequired,
+  lastPage: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedRepo, issuesByRepo, curPage } = state;
+  const { selectedRepo, issuesByRepo, curPage, lastPage } = state;
   const {
     isFetching,
     lastUpdated,
@@ -137,7 +141,8 @@ function mapStateToProps(state) {
     issues,
     isFetching,
     lastUpdated,
-    curPage
+    curPage,
+    lastPage
   };
 }
 
