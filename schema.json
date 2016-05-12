@@ -4,6 +4,7 @@
     "isFetching": true,
     "didInvalidate": false,
     "lastUpdated": null,
+    "curPage": 1,
     "issues": [
     {
        "url": "https://api.github.com/repos/npm/npm/issues/12591",
