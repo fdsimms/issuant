@@ -23,7 +23,12 @@ function shortenTo140Chars(str) {
     idx += 1;
   }
 
-  return result.join(" ");
+  result = result.join(" ");
+  if (result[result.length - 1] !== ".") {
+    result += (" ...");
+  }
+
+  return result;
 }
 
 class IssueContainer extends Component {
