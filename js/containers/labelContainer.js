@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import Label from "../components/label";
-import { addFilter, fetchIssuesIfNeeded } from "../actions";
+import { toggleFilter, fetchIssuesIfNeeded, invalidateRepo } from "../actions";
 
 class LabelContainer extends Component {
   constructor(props) {
@@ -12,7 +12,8 @@ class LabelContainer extends Component {
   handleClick(e) {
     e.preventDefault();
     const { dispatch, label, selectedRepo } = this.props;
-    dispatch(addFilter(label.name));
+    dispatch(toggleFilter(label.name));
+    dispatch(invalidateRepo(selectedRepo));
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 

@@ -3,7 +3,7 @@ import {
   SELECT_REPO, INVALIDATE_REPO,
   REQUEST_ISSUES, RECEIVE_ISSUES,
   INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE,
-  UPDATE_LAST_PAGE, ADD_FILTER
+  UPDATE_LAST_PAGE, TOGGLE_FILTER
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
@@ -17,9 +17,14 @@ function selectedRepo(state = "npm/npm", action) {
 
 function filters(state = [], action) {
   switch (action.type) {
-  case ADD_FILTER:
+  case TOGGLE_FILTER:
     var newState = state.slice();
-    newState.push(action.filter);
+    var alreadyOn = newState.indexOf(action.filter);
+    if (alreadyOn !== -1) {
+      newState.splice(alreadyOn, 1);
+    } else {
+      newState.push(action.filter);
+    }
     return newState;
   default:
     return state;
