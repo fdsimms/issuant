@@ -73,39 +73,39 @@ class App extends Component {
     return (
       <div className="app">
       <Header />
-        <div>
-          {lastUpdated &&
-            <span className="last-updated">
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {" "}
-            </span>
+        <main className="main">
+          <div className="last-updated">
+            {lastUpdated &&
+             "Last updated at #{new Date(lastUpdated).toLocaleTimeString()}."
+            }
+            {!isFetching &&
+              <a className="prev-page-button button" href="#"
+              onClick={this.handlePrevPageClick}>
+              prev
+              </a>
+            }
+            {!isFetching &&
+              <a className="refresh-button button" href="#"
+                 onClick={this.handleRefreshClick}>
+                Refresh
+              </a>
+            }
+            {!isFetching &&
+              <a className="next-page-button button" href="#"
+                 onClick={this.handleNextPageClick}>
+                next
+              </a>
+            }
+          </div>
+
+          {isFetching && issues.length === 0 &&
+            <h2 className="loading">Loading...</h2>
           }
-          {!isFetching &&
-            <a className="prev-page-button button" href="#"
-            onClick={this.handlePrevPageClick}>
-            prev
-            </a>
+          {!isFetching && issues.length === 0 &&
+            <h2 className="empty">Empty.</h2>
           }
-          {!isFetching &&
-            <a className="refresh-button button" href="#"
-               onClick={this.handleRefreshClick}>
-              Refresh
-            </a>
-          }
-          {!isFetching &&
-            <a className="next-page-button button" href="#"
-               onClick={this.handleNextPageClick}>
-              next
-            </a>
-          }
-        </div>
-        {isFetching && issues.length === 0 &&
-          <h2 className="loading">Loading...</h2>
-        }
-        {!isFetching && issues.length === 0 &&
-          <h2 className="empty">Empty.</h2>
-        }
-        <IssuesList issues={issues} isFetching={isFetching} />
+          <IssuesList issues={issues} isFetching={isFetching} />
+          </main>
       </div>
     );
   }

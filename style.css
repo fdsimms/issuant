@@ -43,6 +43,7 @@ button {
   align-items: center;
   height: 50px;
   background-color: purple;
+  margin-bottom: 15px;
 }
 
 .header-text {
@@ -53,7 +54,10 @@ button {
 }
 
 .issues-list {
-  margin: 15px;
+}
+
+.last-updated {
+  padding: 10px;
 }
 
 .issues-list.fetching {
@@ -61,7 +65,18 @@ button {
 }
 
 .issue {
-  margin-top: 15px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.issue:first-child {
+  border-top: 1px solid #ccc;
+}
+
+.main {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 25px;
 }
 
 .button {
@@ -75,4 +90,8 @@ button {
   font-size: 6em;
   color: purple;
   text-align: center;
+}
+
+.issue-title {
+  font-weight: bold;
 }
