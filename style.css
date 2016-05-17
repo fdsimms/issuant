@@ -56,6 +56,10 @@ button {
   margin: 15px;
 }
 
+.issues-list.fetching {
+  color: #bbb;
+}
+
 .issue {
   margin-top: 15px;
 }

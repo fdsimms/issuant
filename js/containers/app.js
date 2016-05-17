@@ -73,7 +73,7 @@ class App extends Component {
     return (
       <div className="app">
       <Header />
-        <p>
+        <div>
           {lastUpdated &&
             <span className="last-updated">
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
@@ -98,18 +98,14 @@ class App extends Component {
               next
             </a>
           }
-        </p>
+        </div>
         {isFetching && issues.length === 0 &&
           <h2 className="loading">Loading...</h2>
         }
         {!isFetching && issues.length === 0 &&
           <h2 className="empty">Empty.</h2>
         }
-        {issues.length > 0 &&
-          <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <IssuesList issues={issues} />
-          </div>
-        }
+        <IssuesList issues={issues} isFetching={isFetching} />
       </div>
     );
   }

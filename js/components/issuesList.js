@@ -1,9 +1,11 @@
 import React, { PropTypes } from "react";
 import IssueContainer from "../containers/issueContainer";
 
-const IssuesList = ({ issues }) => (
-  <ul className="issues-list">
-    { issues.map((issue, i) =>
+const IssuesList = ({ issues, isFetching }) => (
+  <ul className={
+    isFetching ? "issues-list fetching" : "issues-list"
+  }>
+    { issues.length > 0 && issues.map((issue, i) =>
       <IssueContainer key={i} issue={issue} />
       )
     }
@@ -11,7 +13,8 @@ const IssuesList = ({ issues }) => (
 );
 
 IssuesList.propTypes = {
-  issues: PropTypes.array.isRequired
+  issues: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired
 };
 
 export default IssuesList;
