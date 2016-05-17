@@ -7,11 +7,19 @@ export const INVALIDATE_REPO = "INVALIDATE_REPO";
 export const INCREMENT_CUR_PAGE = "INCREMENT_CUR_PAGE";
 export const DECREMENT_CUR_PAGE = "DECREMENT_CUR_PAGE";
 export const UPDATE_LAST_PAGE = "UPDATE_LAST_PAGE";
+export const ADD_FILTER = "ADD_FILTER";
 
 export function selectRepo(repo) {
   return {
     type: SELECT_REPO,
     repo
+  };
+}
+
+export function addFilter(filter) {
+  return {
+    type:ADD_FILTER,
+    filter
   };
 }
 
