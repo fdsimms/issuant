@@ -65,16 +65,19 @@ export function updateLastPage(lastPage) {
   };
 }
 
-function fetchIssues(state, repo) {
+
+function fetchIssues(state, repo, filters) {
   return dispatch => {
     dispatch(requestIssues(repo));
 
-    let page = "https://api.github.com/repos/" + repo + "/issues?page=" + state.curPage;
+    let page = "https://api.github.com/repos/" +
+               repo + "/issues?page=" + state.curPage + "&" +
+               "filters=" + filters.join(",");
 
     return fetch(page)
       .then(response => {
         let links = response.headers.get("Link");
-        let lastPage = links.match(/.*page=(\d+)>;\srel="last"/)[1];
+        let lastPage = links.match(/.*filters=(\d*)>;\srel="last"/)[1];
         dispatch(updateLastPage(lastPage));
         return response.json();
       }).then(json => dispatch(receiveIssues(repo, json)));
@@ -92,10 +95,10 @@ function shouldFetchIssues(state, repo) {
   }
 }
 
-export function fetchIssuesIfNeeded(repo) {
+export function fetchIssuesIfNeeded(repo, filters = []) {
   return (dispatch, getState) => {
     if (shouldFetchIssues(getState(), repo)) {
-      return dispatch(fetchIssues(getState(), repo));
+      return dispatch(fetchIssues(getState(), repo, filters));
     }
   };
 }
