@@ -37,10 +37,11 @@ function requestIssues(repo) {
   };
 }
 
-function receiveIssues(repo, json) {
+function receiveIssues(repo, curPage, json) {
   return {
     type: RECEIVE_ISSUES,
     repo,
+    curPage,
     issues: json,
     receivedAt: Date.now()
   };
@@ -80,13 +81,14 @@ function fetchIssues(state, repo, filters) {
           dispatch(updateLastPage(lastPage));
         }
         return response.json();
-      }).then(json => dispatch(receiveIssues(repo, json)));
+      }).then(json => dispatch(receiveIssues(repo, state.curPage, json)));
   };
 }
 
 function shouldFetchIssues(state, repo) {
   const issues = state.issuesByRepo[repo];
-  if (!issues) {
+
+  if (!issues || (issues && !issues.itemsByPage[state.curPage])) {
     return true;
   } else if (issues.isFetching) {
     return false;
@@ -97,7 +99,7 @@ function shouldFetchIssues(state, repo) {
 
 export function fetchIssuesIfNeeded(repo) {
   return (dispatch, getState) => {
-    if (shouldFetchIssues(getState(), repo) || getState().filters.length > 0) {
+    if (shouldFetchIssues(getState(), repo)) {
       return dispatch(fetchIssues(getState(), repo, getState().filters));
     }
   };

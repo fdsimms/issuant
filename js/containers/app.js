@@ -53,7 +53,6 @@ class App extends Component {
 
     const { dispatch, selectedRepo, curPage } = this.props;
     dispatch(incrementCurPage());
-    dispatch(invalidateRepo(selectedRepo));
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 
@@ -63,13 +62,12 @@ class App extends Component {
     const { dispatch, selectedRepo, curPage } = this.props;
     if (curPage > 1) {
       dispatch(decrementCurPage());
-      dispatch(invalidateRepo(selectedRepo));
       dispatch(fetchIssuesIfNeeded(selectedRepo));
     }
   }
 
   render() {
-    const { issues, isFetching, lastUpdated, lastPage } = this.props;
+    const { issues, isFetching, lastUpdated, lastPage, curPage } = this.props;
     return (
       <div className="app">
       <Header />
@@ -106,7 +104,7 @@ class App extends Component {
           {!isFetching && issues.length === 0 &&
             <h2 className="empty">Empty.</h2>
           }
-          <IssuesList issues={issues} isFetching={isFetching} />
+          <IssuesList curPage={curPage} issues={issues} isFetching={isFetching} />
           </main>
       </div>
     );
@@ -128,10 +126,10 @@ function mapStateToProps(state) {
   const {
     isFetching,
     lastUpdated,
-    items: issues
+    itemsByPage: issues
   } = issuesByRepo[selectedRepo] || {
     isFetching: true,
-    items: []
+    itemsByPage: []
   };
 
   return {
@@ -140,8 +138,7 @@ function mapStateToProps(state) {
     isFetching,
     lastUpdated,
     curPage,
-    lastPage,
-
+    lastPage
   };
 }
 

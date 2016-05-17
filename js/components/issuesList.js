@@ -1,11 +1,12 @@
 import React, { PropTypes } from "react";
 import IssueContainer from "../containers/issueContainer";
 
-const IssuesList = ({ issues, isFetching }) => (
+const IssuesList = ({ issues, isFetching, curPage }) => (
   <ul className={
     isFetching ? "issues-list fetching" : "issues-list"
   }>
-    { issues.length > 0 && issues.map((issue, i) =>
+    { issues[curPage] && issues[curPage].length > 0 &&
+      issues[curPage].map((issue, i) =>
       <IssueContainer key={i} issue={issue} />
       )
     }

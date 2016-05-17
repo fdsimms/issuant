@@ -58,7 +58,7 @@ function lastPage(state = -1, action) {
 function issues(state = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  itemsByPage: []
 }, action) {
   switch (action.type) {
   case INVALIDATE_REPO:
@@ -71,10 +71,13 @@ function issues(state = {
       didInvalidate: false
     });
   case RECEIVE_ISSUES:
+    var itemsByPage = state.itemsByPage.slice();
+    
+    itemsByPage[action.curPage] = action.issues;
     return Object.assign({}, state, {
       isFetching: false,
       didInvalidate: false,
-      items: action.issues,
+      itemsByPage: itemsByPage,
       lastUpdated: action.receivedAt
     });
   default:
@@ -82,7 +85,7 @@ function issues(state = {
   }
 }
 
-function issuesByRepo(state = { }, action) {
+function issuesByRepo(state = {}, action) {
   switch (action.type) {
   case INVALIDATE_REPO:
   case RECEIVE_ISSUES:
