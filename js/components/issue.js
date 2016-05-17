@@ -6,9 +6,9 @@ const Issue = ({ issue, shortenedBody }) => (
       <li className="issue-body">{shortenedBody}</li>
     <li className="issue-author-stuff">
       opened by {" "}
-      <div className="issue-avatar">
+      <a href={issue.user.html_url} className="issue-avatar">
       <img src={issue.user.avatar_url} />
-      </div>
+      </a>
       <a href={issue.user.html_url}
          target="_blank"
          className="issue-author">
