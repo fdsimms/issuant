@@ -69,7 +69,7 @@ class App extends Component {
   }
 
   render() {
-    const { selectedRepo, issues, isFetching, lastUpdated, lastPage } = this.props;
+    const { issues, isFetching, lastUpdated, lastPage } = this.props;
     return (
       <div className="app">
       <Header />
@@ -140,7 +140,8 @@ function mapStateToProps(state) {
     isFetching,
     lastUpdated,
     curPage,
-    lastPage
+    lastPage,
+
   };
 }
 
