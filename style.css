@@ -138,3 +138,11 @@ button, a {
 .issue-body {
   margin-top: 10px;
 }
+
+.label {
+  font-size: 12px;
+  color: white;
+  margin-right: 1px;
+  padding: 2px;
+  border-radius: 3px;
+}
