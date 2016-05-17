@@ -1,9 +1,13 @@
 import React, { PropTypes } from "react";
+import Labels from "./labels";
 
 const Issue = ({ issue, shortenedBody }) => (
   <ul className="issue">
-    <li className="issue-title">#{issue.number}: {issue.title}</li>
-      <li className="issue-body">{shortenedBody}</li>
+    <li className="title-and-labels">
+      <div className="issue-title">#{issue.number}: {issue.title}</div>
+      <Labels labels={issue.labels} />
+    </li>
+    <li className="issue-body">{shortenedBody}</li>
     <li className="issue-author-stuff">
       opened by {" "}
       <a href={issue.user.html_url} className="issue-avatar">
