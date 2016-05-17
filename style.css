@@ -24,6 +24,17 @@ body {
   font-family: sans-serif;
 }
 
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.issue-avatar {
+  display: block;
+  width: 50px;
+}
+
 input {
   cursor: text;
 }
