@@ -9,7 +9,9 @@ const Issue = ({ issue, shortenedBody }) => (
       <div className="issue-avatar">
       <img src={issue.user.avatar_url} />
       </div>
-      <a href={issue.user.html_url} target="_blank">
+      <a href={issue.user.html_url}
+         target="_blank"
+         className="issue-author">
       {issue.user.login}
       </a>
     </li>

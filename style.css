@@ -40,7 +40,7 @@ input {
   cursor: text;
 }
 
-button {
+button, a {
   cursor: pointer;
 }
 
@@ -118,9 +118,13 @@ button {
   font-weight: bold;
 }
 
-.issue-author {
+.issue-author-stuff {
   font-style: italic;
   font-size: 12px;
+}
+
+.issue-author:hover {
+  color: purple;
 }
 
 .issue-author-stuff {
