@@ -57,7 +57,13 @@ button {
 }
 
 .last-updated {
-  padding: 10px;
+  padding: 10px 0;
+  display: block;
+}
+
+.main-top-bar {
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
 
 .issues-list.fetching {

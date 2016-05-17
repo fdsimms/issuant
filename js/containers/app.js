@@ -74,30 +74,32 @@ class App extends Component {
       <div className="app">
       <Header />
         <main className="main">
-          {lastUpdated &&
-          <div className="last-updated">
-            Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-            {" "}
+          <div className="main-top-bar group">
+            {lastUpdated &&
+            <div className="last-updated">
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+              {" "}
+            </div>
+            }
+            {!isFetching &&
+              <button className="prev-page-button button" href="#"
+              onClick={this.handlePrevPageClick}>
+              prev
+              </button>
+            }
+            {!isFetching &&
+              <button className="refresh-button button" href="#"
+                 onClick={this.handleRefreshClick}>
+                Refresh
+              </button>
+            }
+            {!isFetching &&
+              <button className="next-page-button button" href="#"
+                 onClick={this.handleNextPageClick}>
+                next
+              </button>
+            }
           </div>
-          }
-          {!isFetching &&
-            <a className="prev-page-button button" href="#"
-            onClick={this.handlePrevPageClick}>
-            prev
-            </a>
-          }
-          {!isFetching &&
-            <a className="refresh-button button" href="#"
-               onClick={this.handleRefreshClick}>
-              Refresh
-            </a>
-          }
-          {!isFetching &&
-            <a className="next-page-button button" href="#"
-               onClick={this.handleNextPageClick}>
-              next
-            </a>
-          }
           {isFetching && issues.length === 0 &&
             <h2 className="loading">Loading...</h2>
           }
