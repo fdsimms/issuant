@@ -25,7 +25,7 @@ function shortenTo140Chars(str) {
 
   result = result.join(" ");
   if (result[result.length - 1] !== ".") {
-    result += (" ...");
+    result += (" [...]");
   }
 
   return result;
