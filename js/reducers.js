@@ -15,10 +15,10 @@ function selectedRepo(state = "npm/npm", action) {
   }
 }
 
-function filterNames(state = [], action) {
+function filters(state = [], action) {
   switch (action.type) {
-  case: ADD_FILTER
-    newState = state.slice();
+  case ADD_FILTER:
+    var newState = state.slice();
     newState.push(action.filter);
     return newState;
   default:
@@ -94,7 +94,8 @@ const rootReducer = combineReducers({
   issuesByRepo,
   selectedRepo,
   curPage,
-  lastPage
+  lastPage,
+  filters
 });
 
 export default rootReducer;
