@@ -79,6 +79,10 @@ button {
   border-top: 1px solid #ccc;
 }
 
+.issue:last-child {
+  border-bottom: none;
+}
+
 .main {
   border: 2px solid #ccc;
   border-radius: 10px;
