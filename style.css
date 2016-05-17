@@ -95,3 +95,12 @@ button {
 .issue-title {
   font-weight: bold;
 }
+
+.issue-author {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.issue-body {
+  margin-top: 10px;
+}
