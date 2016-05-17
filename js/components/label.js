@@ -1,15 +1,17 @@
 import React, { PropTypes } from "react";
 
-const Label = ({ label }) => (
-  <a className="label"
-      style={{background: "#" + label.color}}
-      href={label.url}>
-      {label.name}
-  </a>
+const Label = ({ label, handleClick }) => (
+  <button className="label"
+          onClick={handleClick}
+          style={{background: "#" + label.color}}
+          href={label.url}>
+    {label.name}
+  </button>
 );
 
 Label.propTypes = {
-  label: PropTypes.object.isRequired
+  label: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Label;
