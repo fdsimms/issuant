@@ -53,13 +53,13 @@ button, a {
 .header-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 50px;
   background-color: purple;
   margin-bottom: 15px;
 }
 
 .header-text {
-  padding-left: 10px;
   font-size: 32px;
   color: white;
   text-shadow: 0 0 0.5px black;
@@ -97,9 +97,9 @@ button, a {
 
 .main {
   border: 2px solid #ccc;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 25px auto;
-  width: 75%;
+  width: 65%;
 }
 
 .button {
