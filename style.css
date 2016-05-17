@@ -50,6 +50,10 @@ button, a {
   display: block;
 }
 
+html {
+  background: #eee;
+}
+
 .header-bar {
   display: flex;
   align-items: center;
@@ -96,6 +100,7 @@ button, a {
 }
 
 .main {
+  background: white;
   border: 2px solid #ccc;
   border-radius: 4px;
   margin: 25px auto;
