@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import Label from "../components/label";
 
 class LabelContainer extends Component {
-
   render() {
     const { label } = this.props;
     return (

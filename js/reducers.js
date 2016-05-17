@@ -3,13 +3,24 @@ import {
   SELECT_REPO, INVALIDATE_REPO,
   REQUEST_ISSUES, RECEIVE_ISSUES,
   INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE,
-  UPDATE_LAST_PAGE
+  UPDATE_LAST_PAGE, ADD_FILTER
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
   switch (action.type) {
   case SELECT_REPO:
     return action.repo;
+  default:
+    return state;
+  }
+}
+
+function filterNames(state = [], action) {
+  switch (action.type) {
+  case: ADD_FILTER
+    newState = state.slice();
+    newState.push(action.filter);
+    return newState;
   default:
     return state;
   }
