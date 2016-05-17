@@ -6,7 +6,11 @@ const Issue = ({ issue, shortenedBody }) => (
       <li className="issue-avatar">
         <img src={issue.user.avatar_url} />
       </li>
-      <li className="issue-author">{issue.user.login}</li>
+      <li className="issue-author">
+        <a href={issue.user.html_url} target="_blank">
+          {issue.user.login}
+        </a>
+      </li>
     </div>
     <div className="issue-content">
       <li className="issue-title">#{issue.number}: {issue.title}</li>
