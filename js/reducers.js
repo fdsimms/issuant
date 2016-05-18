@@ -3,7 +3,8 @@ import {
   SELECT_REPO, INVALIDATE_REPO,
   REQUEST_ISSUES, RECEIVE_ISSUES,
   INCREMENT_CUR_PAGE, DECREMENT_CUR_PAGE,
-  UPDATE_LAST_PAGE, TOGGLE_FILTER
+  UPDATE_LAST_PAGE, TOGGLE_FILTER,
+  RESET_CUR_PAGE
 } from "./actions";
 
 function selectedRepo(state = "npm/npm", action) {
@@ -41,6 +42,8 @@ function curPage(state = 1, action) {
     } else {
       return state;
     }
+  case RESET_CUR_PAGE:
+    return 1;
   default:
     return state;
   }
@@ -72,7 +75,7 @@ function issues(state = {
     });
   case RECEIVE_ISSUES:
     var itemsByPage = state.itemsByPage.slice();
-    
+
     itemsByPage[action.curPage] = action.issues;
     return Object.assign({}, state, {
       isFetching: false,

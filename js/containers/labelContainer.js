@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import Label from "../components/label";
-import { toggleFilter, fetchIssuesIfNeeded, invalidateRepo } from "../actions";
+import { toggleFilter,
+         fetchIssuesIfNeeded,
+         invalidateRepo, 
+         resetCurPage } from "../actions";
 
 class LabelContainer extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class LabelContainer extends Component {
     const { dispatch, label, selectedRepo } = this.props;
     dispatch(toggleFilter(label.name));
     dispatch(invalidateRepo(selectedRepo));
+    dispatch(resetCurPage());
     dispatch(fetchIssuesIfNeeded(selectedRepo));
   }
 
