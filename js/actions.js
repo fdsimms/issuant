@@ -8,6 +8,7 @@ export const INCREMENT_CUR_PAGE = "INCREMENT_CUR_PAGE";
 export const DECREMENT_CUR_PAGE = "DECREMENT_CUR_PAGE";
 export const UPDATE_LAST_PAGE = "UPDATE_LAST_PAGE";
 export const TOGGLE_FILTER = "TOGGLE_FILTER";
+export const RESET_CUR_PAGE = "RESET_CUR_PAGE";
 
 export function selectRepo(repo) {
   return {
@@ -27,6 +28,12 @@ export function invalidateRepo(repo) {
   return {
     type: INVALIDATE_REPO,
     repo
+  };
+}
+
+export function resetCurPage() {
+  return {
+    type: RESET_CUR_PAGE
   };
 }
 
@@ -69,7 +76,7 @@ export function updateLastPage(lastPage) {
 function fetchIssues(state, repo, filters) {
   return dispatch => {
     dispatch(requestIssues(repo));
-
+    // TODO: fix the url to change when filters are introduced
     let page = "https://api.github.com/repos/" +
                repo + "/issues?page=" + state.curPage + "&" +
                "labels=" + filters.join(",");
