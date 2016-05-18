@@ -79,7 +79,7 @@ function fetchIssues(state, repo, filters) {
     // TODO: fix the url to change when filters are introduced
     let page = "https://api.github.com/repos/" +repo + "/issues?";
     if (filters.length <= 0) {
-      page += state.curPage;
+      page += "page=" + state.curPage;
     } else {
       page += "labels=" + filters.join(",");
     }

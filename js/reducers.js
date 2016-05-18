@@ -76,7 +76,6 @@ function issues(state = {
     });
   case RECEIVE_ISSUES:
     var itemsByPage = state.itemsByPage.slice();
-
     itemsByPage[action.curPage] = action.issues;
     return Object.assign({}, state, {
       isFetching: false,

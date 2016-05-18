@@ -91,7 +91,7 @@ class App extends Component {
                 Refresh
               </button>
             }
-            {!isFetching &&
+            {!isFetching && curPage !== lastPage &&
               <button className="next-page-button button" href="#"
                  onClick={this.handleNextPageClick}>
                 next
