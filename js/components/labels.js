@@ -9,8 +9,8 @@ const Labels = ({ labels }) => (
   </ul>
 );
 
-Labels.proptypes = {
-  labels: PropTypes.object.isRequired
+Labels.propTypes = {
+  labels: PropTypes.array.isRequired
 };
 
 export default Labels;
