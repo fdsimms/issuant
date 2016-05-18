@@ -66,7 +66,8 @@ function issues(state = {
   switch (action.type) {
   case INVALIDATE_REPO:
     return Object.assign({}, state, {
-      didInvalidate: true
+      didInvalidate: true,
+      itemsByPage: []
     });
   case REQUEST_ISSUES:
     return Object.assign({}, state, {
