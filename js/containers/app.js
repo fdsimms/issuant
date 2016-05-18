@@ -79,7 +79,7 @@ class App extends Component {
               {" "}
             </div>
             }
-            {!isFetching &&
+            {!isFetching && curPage > 1 &&
               <button className="prev-page-button button" href="#"
               onClick={this.handlePrevPageClick}>
               prev
