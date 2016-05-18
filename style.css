@@ -59,7 +59,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 60px;
   background-color: purple;
   margin-bottom: 15px;
 }
@@ -67,6 +67,7 @@ html {
 .header-text {
   font-size: 32px;
   color: white;
+  font-weight: bold;
   text-shadow: 0 0 0.5px black;
 }
 
