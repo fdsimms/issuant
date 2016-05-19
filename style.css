@@ -45,6 +45,10 @@ button, a {
   cursor: pointer;
 }
 
+.button:hover {
+  background: #eee;
+}
+
 .group:before {
   clear: both;
   content: "";
