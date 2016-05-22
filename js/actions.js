@@ -76,7 +76,7 @@ export function updateLastPage(lastPage) {
 function fetchIssues(state, repo, filters) {
   return dispatch => {
     dispatch(requestIssues(repo));
-    // TODO: fix the url to change when filters are introduced
+    // TODO: fix the url so it changes when filters are introduced
     let page = "https://api.github.com/repos/" +repo + "/issues?";
     if (filters.length <= 0) {
       page += "page=" + state.curPage;
